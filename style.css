@@ -133,7 +133,7 @@ h1 {
 }
 
 #gameBoardContainer {
-  width: 470px;
+  width: 305px;
   margin: auto;
   margin-top: 50px;
   display: grid;
@@ -141,11 +141,11 @@ h1 {
 }
 
 .gameBoardSquare {
-  height: 150px;
-  width: 150px;
-  margin-top: 10px;
+  height: 100px;
+  width: 100px;
+  margin-top: 2px;
   background-color: #343434;
-  font-size: 125px;
+  font-size: 95px;
   color: white;
   text-align: center;
   cursor: pointer;
