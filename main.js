@@ -88,8 +88,6 @@ const reset = () => {
   gameWinner.textContent = "";
 };
 
-gameBoard.displayGame();
-
 function createPlayers() {
   player1 = playerFactory(document.getElementById("name1").value);
   player2 = playerFactory(document.getElementById("name2").value);
