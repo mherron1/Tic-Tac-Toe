@@ -124,11 +124,11 @@ table {
 }
 
 body {
-  font-family: "Brush Script MT", cursive;
+  font-family: arial;
 }
 
 h1 {
-  font-family: "Times New Roman";
+  font-family: arial;
   text-align: center;
   background-color: black;
   color: white;
