@@ -1,5 +1,5 @@
-//module containing containing gameBoard markers and gameBoard creator
 let currentMarker = "X";
+//module containing gameBoard array, gameboard creation function, gamboard display function and game reset function.
 const gameBoard = (() => {
   const markers = Array(9).fill(null);
 
@@ -9,11 +9,11 @@ const gameBoard = (() => {
     gameBoardSquare.textContent = item;
     gameBoardContainer.appendChild(gameBoardSquare);
     gameBoardSquare.addEventListener("click", function () {
-      if (gameBoard.markers[index] === null) {
+      if (markers[index] === null) {
         currentMarker === "O" ? (currentMarker = "X") : (currentMarker = "O");
-        gameBoard.markers[index] = currentMarker;
+        markers[index] = currentMarker;
       }
-      gameBoard.displayGame();
+      displayGame();
     });
   };
 
@@ -24,8 +24,10 @@ const gameBoard = (() => {
         gameBoardContainer.removeChild(gameBoardContainer.firstChild);
       }
     }
+    //display updated gameboard
     markers.forEach(createGameBoard);
-    CheckGameOver(markers);
+    //check for a winner/draw
+    CheckGameOver();
   };
 
   return {
@@ -34,52 +36,64 @@ const gameBoard = (() => {
   };
 })();
 
-gameBoard.displayGame();
+//factory function to create players
+const playerFactory = (name) => {
+  return { name };
+};
 
-const player1 = prompt("Player One (X)");
+function CheckGameOver() {
+  //check for each of the 8 ways to win, then check if "X" or "O"
+  let m = gameBoard.markers;
 
-const player2 = prompt("Player Two (O)");
-
-function CheckGameOver(markers) {
-  let m = markers;
   if (m[0] != null && m[0] === m[1] && m[0] === m[2]) {
-    m[0] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[3] != null && m[3] === m[4] && m[3] === m[5]) {
-    m[3] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[3] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[6] != null && m[6] === m[7] && m[6] === m[8]) {
-    m[6] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[6] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[0] != null && m[0] === m[3] && m[0] === m[6]) {
-    m[0] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[1] != null && m[1] === m[4] && m[1] === m[7]) {
-    m[1] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[1] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[2] != null && m[2] === m[5] && m[2] === m[8]) {
-    m[2] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[2] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[0] != null && m[0] === m[4] && m[0] === m[8]) {
-    m[0] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
   if (m[2] != null && m[2] === m[4] && m[2] === m[6]) {
-    m[2] === "X" ? announceWinner(player1) : announceWinner(player2);
+    m[2] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
   }
-
+  // if no null elements remain, and there has been no winner, announce draw.
   if (!m.includes(null) && !document.querySelector("#result").textContent) {
     document.querySelector("#result").textContent = "Draw";
   }
 }
 
+let gameWinner = document.querySelector("#result");
+
 function announceWinner(winner) {
-  let gameWinner = document.querySelector("#result");
   gameWinner.textContent = winner + " wins!";
 }
 
-function reset() {
+const reset = () => {
   for (i = 0; i < gameBoard.markers.length; i++) gameBoard.markers[i] = null;
+  createPlayers();
   gameBoard.displayGame();
-  let gameWinner = document.querySelector("#result");
   gameWinner.textContent = "";
+};
+
+gameBoard.displayGame();
+
+function createPlayers() {
+  player1 = playerFactory(document.getElementById("name1").value);
+  player2 = playerFactory(document.getElementById("name2").value);
 }
+
+let player1 = playerFactory(document.getElementById("name1").value);
+let player2 = playerFactory(document.getElementById("name2").value);
