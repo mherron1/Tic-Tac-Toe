@@ -93,10 +93,6 @@ function createPlayers() {
   player2 = playerFactory(document.getElementById("name2").value);
 }
 
-function showImage() {
-  document.querySelector("#wellDoneImage").style.display = "block";
-}
-
 let gameWinner = document.querySelector("#result");
 let player1 = playerFactory(document.getElementById("name1").value);
 let player2 = playerFactory(document.getElementById("name2").value);
