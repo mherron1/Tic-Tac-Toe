@@ -1,6 +1,6 @@
-let currentMarker = "X";
 //module containing gameBoard array, gameboard creation function, gamboard display function and game reset function.
 const gameBoard = (() => {
+  let currentMarker = "X";
   const markers = Array(9).fill(null);
 
   const createGameBoard = (item, index) => {
@@ -9,7 +9,8 @@ const gameBoard = (() => {
     gameBoardSquare.textContent = item;
     gameBoardContainer.appendChild(gameBoardSquare);
     gameBoardSquare.addEventListener("click", function () {
-      if (markers[index] === null) {
+      //check if square is already occupied, or the game is over, before
+      if (markers[index] === null && gameWinner.textContent === "") {
         currentMarker === "O" ? (currentMarker = "X") : (currentMarker = "O");
         markers[index] = currentMarker;
       }
@@ -47,27 +48,35 @@ function CheckGameOver() {
 
   if (m[0] != null && m[0] === m[1] && m[0] === m[2]) {
     m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[3] != null && m[3] === m[4] && m[3] === m[5]) {
     m[3] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[6] != null && m[6] === m[7] && m[6] === m[8]) {
     m[6] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[0] != null && m[0] === m[3] && m[0] === m[6]) {
     m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[1] != null && m[1] === m[4] && m[1] === m[7]) {
     m[1] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[2] != null && m[2] === m[5] && m[2] === m[8]) {
     m[2] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[0] != null && m[0] === m[4] && m[0] === m[8]) {
     m[0] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   if (m[2] != null && m[2] === m[4] && m[2] === m[6]) {
     m[2] === "X" ? announceWinner(player1.name) : announceWinner(player2.name);
+    showImage();
   }
   // if no null elements remain, and there has been no winner, announce draw.
   if (!m.includes(null) && !document.querySelector("#result").textContent) {
@@ -75,23 +84,28 @@ function CheckGameOver() {
   }
 }
 
-let gameWinner = document.querySelector("#result");
-
 function announceWinner(winner) {
   gameWinner.textContent = winner + " wins!";
 }
 
-const reset = () => {
+function reset() {
   for (i = 0; i < gameBoard.markers.length; i++) gameBoard.markers[i] = null;
   createPlayers();
   gameBoard.displayGame();
   gameWinner.textContent = "";
-};
+  currentMarker = "O";
+  document.querySelector("#wellDoneImage").style.display = "none";
+}
 
 function createPlayers() {
   player1 = playerFactory(document.getElementById("name1").value);
   player2 = playerFactory(document.getElementById("name2").value);
 }
 
+function showImage() {
+  document.querySelector("#wellDoneImage").style.display = "block";
+}
+
+let gameWinner = document.querySelector("#result");
 let player1 = playerFactory(document.getElementById("name1").value);
 let player2 = playerFactory(document.getElementById("name2").value);

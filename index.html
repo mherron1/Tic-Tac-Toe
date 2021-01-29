@@ -10,17 +10,16 @@
     <h1>Tic-Tac-Toe</h1>
 
     <br />
-    <center>
-      <div>
-        <input type="text" id="name1" value="Player 1 " />
-        <input type="text" id="name2" value="Player 2 " />
-      </div>
-    </center>
-    <div id="gameBoardContainer"></div>
-    <center>
+
+    <div id="controls">
+      <label>X</label><input type="text" id="name1" value="Player 1 " />
       <button id="newGame" onclick="reset()">New Game</button>
-    </center>
+      <input type="text" id="name2" value="Player 2 " /><label>O</label>
+    </div>
+
+    <div id="gameBoardContainer"></div>
     <div id="result"></div>
+    <img id="wellDoneImage" src="wellDone.jpg" />
   </body>
 
   <script src="main.js"></script>

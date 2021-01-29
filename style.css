@@ -123,7 +123,12 @@ table {
   border-spacing: 0;
 }
 
+body {
+  font-family: "Brush Script MT", cursive;
+}
+
 h1 {
+  font-family: "Times New Roman";
   text-align: center;
   background-color: black;
   color: white;
@@ -164,4 +169,30 @@ h1 {
 #newGame {
   font-size: 25px;
   margin-top: 50px;
+}
+
+#controls {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#name1,
+#name2 {
+  width: 100px;
+  margin: 20px;
+  font-size: 18px;
+}
+
+label {
+  font-size: 25px;
+  color: grey;
+  font-weight: bold;
+}
+
+#wellDoneImage {
+  display: none;
+  width: 250px;
+  margin: 0 auto;
+  margin-top: 50px;
+  transform: translateX(35px);
 }
