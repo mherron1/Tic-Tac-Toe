@@ -188,11 +188,3 @@ label {
   color: grey;
   font-weight: bold;
 }
-
-#wellDoneImage {
-  display: none;
-  width: 250px;
-  margin: 0 auto;
-  margin-top: 50px;
-  transform: translateX(35px);
-}
