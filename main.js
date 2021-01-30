@@ -1,6 +1,6 @@
 //module containing gameBoard array, gameboard creation function, gamboard display function and game reset function.
+let currentMarker = "X";
 const gameBoard = (() => {
-  let currentMarker = "X";
   const markers = Array(9).fill(null);
 
   const createGameBoard = (item, index) => {
@@ -20,6 +20,7 @@ const gameBoard = (() => {
 
   const displayGame = () => {
     //first clear existing gameboard
+
     if (gameBoardContainer) {
       while (gameBoardContainer.firstChild) {
         gameBoardContainer.removeChild(gameBoardContainer.firstChild);
